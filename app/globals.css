@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: oklch(0.13 0.02 250);
+  --color-foreground: oklch(0.97 0.01 250);
+  --color-muted: oklch(0.25 0.02 250);
+  --color-muted-foreground: oklch(0.65 0.02 250);
+  --color-card: oklch(0.17 0.02 250);
+  --color-card-foreground: oklch(0.97 0.01 250);
+  --color-border: oklch(0.30 0.02 250);
+  --color-primary: oklch(0.65 0.18 230);
+  --color-primary-foreground: oklch(0.13 0.02 250);
+  --color-accent: oklch(0.55 0.20 230);
+  --color-accent-foreground: oklch(0.97 0.01 250);
+  --color-ring: oklch(0.65 0.18 230);
+  --radius: 0.75rem;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Noise texture overlay */
+.noise-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: oklch(0.17 0.02 250 / 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid oklch(0.30 0.02 250 / 0.5);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, oklch(0.65 0.18 230) 0%, oklch(0.75 0.15 200) 50%, oklch(0.65 0.18 230) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 20px oklch(0.65 0.18 230 / 0.3),
+              0 0 40px oklch(0.65 0.18 230 / 0.1);
+}
+
+/* Selection */
+::selection {
+  background: oklch(0.65 0.18 230 / 0.3);
+  color: var(--color-foreground);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
