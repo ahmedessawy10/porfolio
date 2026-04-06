@@ -68,7 +68,7 @@ function MarqueeRow({ direction = "left", speed = 30 }: { direction?: "left" | "
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="px-5 py-2.5 rounded-full glass text-sm font-medium text-muted-foreground whitespace-nowrap hover:text-primary hover:border-primary transition-colors cursor-default"
+            className="px-5 py-2.5 rounded-full glass text-sm font-medium text-muted-foreground whitespace-nowrap hover:text-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-300 cursor-default"
           >
             {skill}
           </div>
@@ -119,10 +119,15 @@ export function Skills() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * catIndex }}
-              className="glass rounded-2xl p-6"
+              whileHover={{ y: -5, transition: { duration: 0.3 } }}
+              className="glass rounded-2xl p-6 card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)]"
             >
               <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-primary" />
+                <motion.span 
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_rgba(0,212,255,0.8)]" 
+                />
                 {category.name}
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -135,7 +140,7 @@ export function Skills() {
                       duration: 0.3,
                       delay: 0.1 * catIndex + 0.05 * skillIndex,
                     }}
-                    className="px-3 py-1.5 rounded-full bg-muted text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors cursor-default"
+                    className="px-3 py-1.5 rounded-full bg-muted text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] transition-all duration-300 cursor-default"
                   >
                     {skill}
                   </motion.span>
@@ -150,10 +155,15 @@ export function Skills() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-8 glass rounded-2xl p-6"
+          whileHover={{ y: -5, transition: { duration: 0.3 } }}
+          className="mt-8 glass rounded-2xl p-6 card-shadow"
         >
           <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent" />
+            <motion.span 
+              animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+              className="w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgba(14,165,233,0.8)]" 
+            />
             Soft Skills
           </h3>
           <div className="flex flex-wrap gap-3">
@@ -167,7 +177,7 @@ export function Skills() {
             ].map((skill) => (
               <span
                 key={skill}
-                className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground hover:border-accent hover:text-accent transition-colors cursor-default"
+                className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground hover:border-accent hover:text-accent hover:shadow-[0_0_20px_rgba(14,165,233,0.3)] transition-all duration-300 cursor-default"
               >
                 {skill}
               </span>

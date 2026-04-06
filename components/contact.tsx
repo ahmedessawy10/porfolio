@@ -76,7 +76,7 @@ export function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="glass rounded-2xl p-8 h-full">
+            <div className="glass rounded-2xl p-8 h-full card-shadow">
               <h3 className="text-xl font-semibold text-foreground mb-6">
                 Contact Information
               </h3>
@@ -90,9 +90,12 @@ export function Contact() {
                     transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
                     className="flex items-center gap-4"
                   >
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <info.icon className="h-5 w-5 text-primary" />
-                    </div>
+                    <motion.div 
+                      whileHover={{ scale: 1.1 }}
+                      className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+                    >
+                      <info.icon className="h-5 w-5 text-primary drop-shadow-[0_0_8px_rgba(0,212,255,0.6)]" />
+                    </motion.div>
                     <div>
                       <p className="text-sm text-muted-foreground">{info.label}</p>
                       {info.href ? (
@@ -114,22 +117,26 @@ export function Contact() {
               <div className="border-t border-border pt-6">
                 <p className="text-sm text-muted-foreground mb-4">Follow me on</p>
                 <div className="flex gap-3">
-                  <a
+                  <motion.a
                     href="https://github.com/ahmedessawy10"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
+                    whileHover={{ scale: 1.15, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"
                   >
                     <Github className="h-5 w-5" />
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href="https://www.linkedin.com/in/ahmed-mostafa-essawy-1106b31a1"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
+                    whileHover={{ scale: 1.15, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"
                   >
                     <Linkedin className="h-5 w-5" />
-                  </a>
+                  </motion.a>
                 </div>
               </div>
 
@@ -140,7 +147,9 @@ export function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.5 }}
-                className="mt-8 w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity glow"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="mt-8 w-full px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 pulse-glow shadow-[0_0_30px_rgba(0,212,255,0.4)] hover:shadow-[0_0_50px_rgba(0,212,255,0.6)] transition-all duration-300"
               >
                 <Download className="h-4 w-4" />
                 Download CV
@@ -154,7 +163,7 @@ export function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
+            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 card-shadow">
               <h3 className="text-xl font-semibold text-foreground mb-6">
                 Send a Message
               </h3>
@@ -175,7 +184,7 @@ export function Contact() {
                       setFormState({ ...formState, name: e.target.value })
                     }
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:shadow-[0_0_15px_rgba(0,212,255,0.2)] transition-all duration-300"
                     placeholder="John Doe"
                   />
                 </div>
@@ -195,7 +204,7 @@ export function Contact() {
                       setFormState({ ...formState, email: e.target.value })
                     }
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:shadow-[0_0_15px_rgba(0,212,255,0.2)] transition-all duration-300"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -215,15 +224,17 @@ export function Contact() {
                       setFormState({ ...formState, message: e.target.value })
                     }
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:shadow-[0_0_15px_rgba(0,212,255,0.2)] transition-all duration-300 resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </div>
 
-                <button
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full px-6 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(0,212,255,0.3)] hover:shadow-[0_0_40px_rgba(0,212,255,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
@@ -238,7 +249,7 @@ export function Contact() {
                       Send Message
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
             </form>
           </motion.div>

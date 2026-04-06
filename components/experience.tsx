@@ -76,12 +76,17 @@ function TimelineItem({
           initial={{ scale: 0 }}
           animate={isInView ? { scale: 1 } : {}}
           transition={{ duration: 0.4, delay: index * 0.2 }}
-          className="relative z-10 w-4 h-4 rounded-full bg-primary glow"
+          className="relative z-10 w-5 h-5 rounded-full bg-primary shadow-[0_0_20px_rgba(0,212,255,0.8),0_0_40px_rgba(0,212,255,0.4)]"
         >
           {/* Glow ring */}
           <motion.div
-            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+            animate={{ scale: [1, 2, 1], opacity: [0.8, 0, 0.8] }}
             transition={{ duration: 2, repeat: Infinity }}
+            className="absolute inset-0 rounded-full bg-primary"
+          />
+          <motion.div
+            animate={{ scale: [1.2, 2.5, 1.2], opacity: [0.4, 0, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
             className="absolute inset-0 rounded-full bg-primary"
           />
         </motion.div>
@@ -100,7 +105,7 @@ function TimelineItem({
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.5, delay: index * 0.2 }}
-        className="glass rounded-2xl p-6 mb-8 flex-1"
+        className="glass rounded-2xl p-6 mb-8 flex-1 card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)] transition-all duration-300"
       >
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
           <div>
@@ -146,7 +151,7 @@ function TimelineItem({
           {experience.skills.map((skill, i) => (
             <span
               key={i}
-              className="px-3 py-1 rounded-full border border-border text-xs text-muted-foreground"
+              className="px-3 py-1 rounded-full border border-border text-xs text-muted-foreground hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] transition-all duration-300"
             >
               {skill}
             </span>
