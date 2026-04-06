@@ -42,7 +42,7 @@ export function Hero() {
   }, [displayText, isDeleting, currentRole]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-[100px] overflow-hidden">
       {/* Background gradient orbs with animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
