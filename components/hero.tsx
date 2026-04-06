@@ -43,10 +43,32 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-      {/* Background gradient orbs */}
+      {/* Background gradient orbs with animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[#00d4ff] rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-[#00ff88] rounded-full blur-[100px]" 
+        />
+        <motion.div 
+          animate={{ 
+            y: [0, -30, 0],
+            opacity: [0.05, 0.1, 0.05],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0ea5e9] rounded-full blur-[150px]" 
+        />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -98,18 +120,22 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
-          <a
+          <motion.a
             href="#contact"
-            className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity glow"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold pulse-glow shadow-[0_0_30px_rgba(0,212,255,0.4)] hover:shadow-[0_0_50px_rgba(0,212,255,0.6)] transition-all duration-300"
           >
             Get in Touch
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#projects"
-            className="px-8 py-3 rounded-full border border-border text-foreground font-medium hover:border-primary transition-colors"
+            whileHover={{ scale: 1.05, borderColor: "#00d4ff" }}
+            whileTap={{ scale: 0.98 }}
+            className="px-8 py-3.5 rounded-full border-2 border-border text-foreground font-semibold hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-300"
           >
             View Projects
-          </a>
+          </motion.a>
         </motion.div>
 
         <motion.div
@@ -118,31 +144,37 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex items-center justify-center gap-6 mt-12"
         >
-          <a
+          <motion.a
             href="https://github.com/ahmedessawy10"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all"
+            whileHover={{ scale: 1.15, y: -3 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-3 rounded-full border-2 border-border text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"
             aria-label="GitHub"
           >
             <Github className="h-5 w-5" />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://www.linkedin.com/in/ahmed-mostafa-essawy-1106b31a1"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all"
+            whileHover={{ scale: 1.15, y: -3 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-3 rounded-full border-2 border-border text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"
             aria-label="LinkedIn"
           >
             <Linkedin className="h-5 w-5" />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="mailto:elessawy238@gmail.com"
-            className="p-3 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all"
+            whileHover={{ scale: 1.15, y: -3 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-3 rounded-full border-2 border-border text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"
             aria-label="Email"
           >
             <Mail className="h-5 w-5" />
-          </a>
+          </motion.a>
         </motion.div>
       </div>
 

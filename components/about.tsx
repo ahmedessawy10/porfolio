@@ -41,7 +41,8 @@ export function About() {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-2 glass rounded-2xl p-6 md:p-8"
+            whileHover={{ y: -5, transition: { duration: 0.3 } }}
+            className="md:col-span-2 glass rounded-2xl p-6 md:p-8 card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)]"
           >
             <h3 className="text-xl font-semibold mb-4 text-foreground">
               Professional Bio
@@ -66,9 +67,15 @@ export function About() {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass rounded-2xl p-6 flex flex-col justify-between"
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
+            className="glass rounded-2xl p-6 flex flex-col justify-between card-shadow"
           >
-            <MapPin className="h-8 w-8 text-primary mb-4" />
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <MapPin className="h-8 w-8 text-primary drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
+            </motion.div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">Based in</p>
               <p className="text-xl font-semibold text-foreground">
@@ -82,9 +89,10 @@ export function About() {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="glass rounded-2xl p-6"
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
+            className="glass rounded-2xl p-6 card-shadow"
           >
-            <GraduationCap className="h-8 w-8 text-primary mb-4" />
+            <GraduationCap className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-1">Education</p>
             <p className="text-lg font-semibold text-foreground mb-2">
               Bachelor of Computer Science
@@ -99,9 +107,10 @@ export function About() {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="glass rounded-2xl p-6"
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
+            className="glass rounded-2xl p-6 card-shadow"
           >
-            <Award className="h-8 w-8 text-primary mb-4" />
+            <Award className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-1">Certification</p>
             <p className="text-lg font-semibold text-foreground mb-2">
               Intensive Training Program
@@ -116,9 +125,10 @@ export function About() {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="glass rounded-2xl p-6"
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
+            className="glass rounded-2xl p-6 card-shadow"
           >
-            <Calendar className="h-8 w-8 text-primary mb-4" />
+            <Calendar className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-3">Languages</p>
             <div className="flex flex-wrap gap-2">
               <span className="px-3 py-1 rounded-full bg-muted text-sm text-foreground">
@@ -139,15 +149,23 @@ export function About() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
         >
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={index}
-              className="glass rounded-2xl p-6 text-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+              whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.3 } }}
+              className="glass rounded-2xl p-6 text-center card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(0,212,255,0.2)]"
             >
-              <p className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+              <motion.p 
+                className="text-3xl md:text-4xl font-bold gradient-text mb-2"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+              >
                 {stat.value}
-              </p>
+              </motion.p>
               <p className="text-sm text-muted-foreground">{stat.label}</p>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

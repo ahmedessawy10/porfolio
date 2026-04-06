@@ -100,7 +100,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="glass rounded-2xl p-6 relative group cursor-pointer"
+      className="glass rounded-2xl p-6 relative group cursor-pointer card-shadow hover:shadow-[0_25px_70px_rgba(0,0,0,0.7),0_0_40px_rgba(0,212,255,0.2)]"
     >
       {/* Category Badge */}
       <div className="absolute top-4 right-4">
@@ -110,7 +110,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
 
       <div className="mb-4">
-        <Layers className="h-10 w-10 text-primary mb-4" />
+        <Layers className="h-10 w-10 text-primary mb-4 drop-shadow-[0_0_15px_rgba(0,212,255,0.6)]" />
         <h3 className="text-xl font-semibold text-foreground mb-2">
           {project.title}
         </h3>
@@ -157,7 +157,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <motion.div
         className="absolute inset-0 rounded-2xl pointer-events-none"
         style={{
-          background: `radial-gradient(600px circle at ${x.get() * 100 + 50}% ${y.get() * 100 + 50}%, oklch(0.65 0.18 230 / 0.1), transparent 40%)`,
+          background: `radial-gradient(600px circle at ${x.get() * 100 + 50}% ${y.get() * 100 + 50}%, rgba(0, 212, 255, 0.15), transparent 40%)`,
         }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
