@@ -1,212 +1,140 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ExternalLink, Github, Layers, ImageIcon } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { ImageIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { projects as allProjects } from "@/lib/projects-data";
 
-type ProjectCategory = "all" | "full-stack" | "backend" | "api";
+type ProjectCategory = "all" | "full-stack" | "backend";
 
-interface Project {
-  title: string;
-  description: string;
-  role: string;
-  category: Exclude<ProjectCategory, "all">;
-  tech: string[];
-  highlights: string[];
-  screenshot?: string; // path to screenshot image, e.g. "/screenshots/ajjile.png"
-}
+const techColors: Record<string, string> = {
+  Laravel: "bg-red-500/15 text-red-400 border-red-500/20",
+  "Laravel 12.x": "bg-red-500/15 text-red-400 border-red-500/20",
+  PHP: "bg-indigo-500/15 text-indigo-400 border-indigo-500/20",
+  "PHP 8.2": "bg-indigo-500/15 text-indigo-400 border-indigo-500/20",
+  MySQL: "bg-blue-500/15 text-blue-400 border-blue-500/20",
+  "REST API": "bg-emerald-500/15 text-emerald-400 border-emerald-500/20",
+  React: "bg-cyan-500/15 text-cyan-400 border-cyan-500/20",
+  "React.js": "bg-cyan-500/15 text-cyan-400 border-cyan-500/20",
+  "Next.js": "bg-slate-400/15 text-slate-300 border-slate-400/20",
+  Sanctum: "bg-orange-500/15 text-orange-400 border-orange-500/20",
+  "Laravel Sanctum": "bg-orange-500/15 text-orange-400 border-orange-500/20",
+  "Spatie Permissions": "bg-purple-500/15 text-purple-400 border-purple-500/20",
+  "Spatie Media Library": "bg-purple-500/15 text-purple-400 border-purple-500/20",
+  "Fractal Transformers": "bg-teal-500/15 text-teal-400 border-teal-500/20",
+  "Spatie Query Builder": "bg-yellow-500/15 text-yellow-400 border-yellow-500/20",
+  "Events & Listeners": "bg-pink-500/15 text-pink-400 border-pink-500/20",
+  "Payment Webhooks": "bg-green-500/15 text-green-400 border-green-500/20",
+  HyperPay: "bg-green-500/15 text-green-400 border-green-500/20",
+  Unifonic: "bg-violet-500/15 text-violet-400 border-violet-500/20",
+  "Tailwind CSS": "bg-sky-500/15 text-sky-400 border-sky-500/20",
+  "ERP Integration": "bg-amber-500/15 text-amber-400 border-amber-500/20",
+  "Real-time Tracking": "bg-rose-500/15 text-rose-400 border-rose-500/20",
+  TypeScript: "bg-blue-400/15 text-blue-300 border-blue-400/20",
+};
 
-const projects: Project[] = [
-  {
-    title: "Ajjile",
-    description:
-      "A full-stack HR and payroll management platform. Built the complete backend REST API with Laravel following a Facade-Service architecture, and contributed to the React frontend. Handles employee records, attendance, leaves, payroll cycles, and role-based access control.",
-    role: "Full-Stack Developer",
-    category: "full-stack",
-    tech: ["Laravel", "REST API", "React", "MySQL", "Sanctum", "Spatie Permissions"],
-    highlights: ["HR & Payroll", "Role-Based Access", "Full-Stack"],
-  },
-  {
-    title: "Mytip",
-    description:
-      "Backend API for a tipping and digital gratitude platform. Responsible for the entire server-side: authentication flows, tip transaction logic, wallet management, and webhook integration with payment gateways.",
-    role: "Backend Developer",
-    category: "backend",
-    tech: ["Laravel", "REST API", "MySQL", "Sanctum", "Payment Webhooks"],
-    highlights: ["Tip Transactions", "Wallet System", "Payment Integration"],
-  },
-  {
-    title: "Lifecare25",
-    description:
-      "Backend API for a healthcare appointment and service booking platform. Built patient and provider management, appointment scheduling with conflict detection, notification system, and admin reporting endpoints.",
-    role: "Backend Developer",
-    category: "api",
-    tech: ["Laravel", "REST API", "MySQL", "Sanctum", "Spatie Media Library", "Fractal"],
-    highlights: ["Appointment Scheduling", "Healthcare Platform", "Admin Reporting"],
-  },
-  {
-    title: "Eksel",
-    description:
-      "Backend API for a freelance marketplace connecting clients with skilled workers. Engineered service listings, bidding system, order lifecycle management, escrow-style payment flow, and review system.",
-    role: "Backend Developer",
-    category: "api",
-    tech: ["Laravel", "REST API", "MySQL", "Sanctum", "Query Builder", "Events & Listeners"],
-    highlights: ["Freelance Marketplace", "Bidding System", "Order Lifecycle"],
-  },
-  {
-    title: "Crepe",
-    description:
-      "Full-stack food ordering platform for a crepe restaurant chain. Developed the Laravel backend API for menu management, customizable orders, branch locations, and delivery tracking — plus contributed to the frontend interface.",
-    role: "Full-Stack Developer",
-    category: "full-stack",
-    tech: ["Laravel", "REST API", "MySQL", "Sanctum", "React", "Fractal Transformers"],
-    highlights: ["Food Ordering", "Menu Management", "Multi-Branch"],
-  },
-  {
-    title: "Aeon",
-    description:
-      "End-to-end e-commerce platform built solo — both frontend and backend. Designed and implemented the Laravel REST API (products, cart, orders, auth) and built the React/Next.js storefront with full shopping experience.",
-    role: "Full-Stack Developer (Solo)",
-    category: "full-stack",
-    tech: ["Laravel", "Next.js", "React", "MySQL", "REST API", "Tailwind CSS"],
-    highlights: ["Solo Full-Stack", "E-Commerce", "Frontend + Backend"],
-  },
-];
+const defaultTechColor = "bg-muted text-muted-foreground border-border";
 
 const categories: { value: ProjectCategory; label: string }[] = [
-  { value: "all", label: "All" },
+  { value: "all", label: "All Projects" },
   { value: "full-stack", label: "Full-Stack" },
   { value: "backend", label: "Backend" },
-  { value: "api", label: "API" },
 ];
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+const cardProjects = allProjects.map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  company: p.company,
+  year: p.year,
+  role: p.role,
+  category: p.category,
+  summary: p.summary,
+  image: p.image,
+  tech: p.techGroups.flatMap((g) => g.items).slice(0, 6),
+}));
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+function TechTag({ tech }: { tech: string }) {
+  return (
+    <span
+      className={cn(
+        "px-2.5 py-1 rounded-full text-xs font-medium border",
+        techColors[tech] ?? defaultTechColor
+      )}
+    >
+      {tech}
+    </span>
+  );
+}
 
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
-  };
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof cardProjects)[number];
+  index: number;
+}) {
+  const router = useRouter();
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      className="glass rounded-2xl overflow-hidden relative group cursor-pointer card-shadow hover:shadow-[0_25px_70px_rgba(0,0,0,0.7),0_0_40px_rgba(0,212,255,0.2)]"
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      onClick={() => router.push(`/projects/${project.slug}`)}
+      className="glass rounded-2xl overflow-hidden card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)] transition-shadow duration-300 cursor-pointer group"
     >
-      {/* Screenshot area */}
-      <div className="relative w-full h-48 bg-muted/30 border-b border-border overflow-hidden">
-        {project.screenshot ? (
+      {/* Image area */}
+      <div className="relative w-full h-44 bg-muted/30 border-b border-border overflow-hidden">
+        {project.image ? (
           <img
-            src={project.screenshot}
-            alt={`${project.title} screenshot`}
+            src={project.image}
+            alt={project.title}
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground/40">
-            <ImageIcon className="h-10 w-10" />
-            <span className="text-xs">Screenshot coming soon</span>
-            {/* Drop your screenshot at: public/screenshots/{project.title.toLowerCase()}.png */}
+          <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground/30">
+            <ImageIcon className="h-8 w-8" />
+            <span className="text-xs">No image yet</span>
           </div>
         )}
-        {/* Category Badge */}
-        <div className="absolute top-3 left-3">
-          <span className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm text-primary text-xs font-medium capitalize border border-primary/20">
-            {project.category}
-          </span>
-        </div>
-        {/* Role Badge */}
-        <div className="absolute top-3 right-3">
-          <span className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm text-muted-foreground text-xs font-medium border border-border">
-            {project.role}
-          </span>
-        </div>
+        {/* Overlay gradient on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
+      {/* Content */}
       <div className="p-6">
-        <div className="mb-4">
-          <h3 className="text-xl font-semibold text-foreground mb-2">
-            {project.title}
-          </h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            {project.description}
-          </p>
+        {/* Header */}
+        <div className="flex items-start justify-between gap-4 mb-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
+              {project.title}
+            </h3>
+            <p className="text-primary text-sm font-medium mt-0.5">{project.company}</p>
+          </div>
+          <div className="flex flex-col items-end gap-1.5 shrink-0">
+            <span className="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+              {project.role}
+            </span>
+            <span className="text-xs text-muted-foreground">{project.year}</span>
+          </div>
         </div>
 
-        {/* Highlights */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.highlights.map((highlight, i) => (
-            <span
-              key={i}
-              className="px-2 py-1 rounded-md bg-muted text-xs text-muted-foreground"
-            >
-              {highlight}
-            </span>
+        {/* Description */}
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+          {project.summary}
+        </p>
+
+        {/* Tech Tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {project.tech.map((t) => (
+            <TechTag key={t} tech={t} />
           ))}
         </div>
-
-        {/* Tech Stack - Shown on hover */}
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0, height: isHovered ? "auto" : 0 }}
-          transition={{ duration: 0.3 }}
-          className="overflow-hidden"
-        >
-          <div className="pt-4 border-t border-border">
-            <p className="text-xs text-muted-foreground mb-2">Tech Stack</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 rounded-full border border-primary/30 text-primary text-xs font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
-
-      {/* Hover glow effect */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl pointer-events-none"
-        style={{
-          background: useTransform(
-            [mouseXSpring, mouseYSpring],
-            ([mx, my]: number[]) =>
-              `radial-gradient(600px circle at ${(mx + 0.5) * 100}% ${(my + 0.5) * 100}%, rgba(0, 212, 255, 0.15), transparent 40%)`
-          ),
-        }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
     </motion.div>
   );
 }
@@ -216,10 +144,10 @@ export function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const filteredProjects =
+  const filtered =
     activeCategory === "all"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+      ? cardProjects
+      : cardProjects.filter((p) => p.category === activeCategory);
 
   return (
     <section id="projects" className="py-24 px-6" ref={ref}>
@@ -231,18 +159,19 @@ export function Projects() {
           className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
+            Recent <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            Real-world projects I have shipped — from solo full-stack builds to team-based API backends across healthcare, HR, e-commerce, and marketplace domains.
+            Real-world systems I have shipped — production APIs, full-stack platforms, and
+            backend services across healthcare, HR, fintech, food-tech, and e-commerce.
           </p>
         </motion.div>
 
-        {/* Filter Buttons */}
+        {/* Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="flex flex-wrap gap-2 mb-10"
         >
           {categories.map((cat) => (
@@ -252,7 +181,7 @@ export function Projects() {
               className={cn(
                 "px-5 py-2 rounded-full text-sm font-medium transition-all duration-200",
                 activeCategory === cat.value
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(0,212,255,0.3)]"
                   : "bg-muted text-muted-foreground hover:text-foreground"
               )}
             >
@@ -261,13 +190,10 @@ export function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+        {/* Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {filtered.map((project, index) => (
+            <ProjectCard key={project.slug} project={project} index={index} />
           ))}
         </motion.div>
       </div>

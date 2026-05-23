@@ -36,29 +36,44 @@ export function About() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          {/* Profile Photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
+            className="glass rounded-2xl overflow-hidden card-shadow row-span-2 min-h-[260px]"
+          >
+            <img
+              src="/profile.png"
+              alt="Ahmed Mostafa"
+              className="w-full h-full object-cover object-top"
+            />
+          </motion.div>
+
           {/* Bio Card - Large */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
             whileHover={{ y: -5, transition: { duration: 0.3 } }}
-            className="md:col-span-2 glass rounded-2xl p-6 md:p-8 card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)]"
+            className="md:col-span-1 lg:col-span-2 glass rounded-2xl p-6 md:p-8 card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)]"
           >
             <h3 className="text-xl font-semibold mb-4 text-foreground">
               Professional Bio
             </h3>
             <p className="text-muted-foreground leading-relaxed text-balance">
-              Backend Developer specializing in PHP and Laravel, with proven
-              experience designing and developing scalable APIs and complex web
+              Full-Stack Developer specializing in PHP, Laravel, and React, with proven
+              experience designing and developing scalable REST APIs and complex web
               systems. Strong background in database optimization, performance
               tuning, and secure application development.
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4 text-balance">
               Experienced in implementing clean architecture patterns, handling
               high-traffic systems, and integrating third-party services.
-              Currently working at Apps Square leading development of
-              production-grade mobile application backends, and part-time at
-              Aeon building a medical maintenance system with Laravel and React.
+              Currently working at Apps Square leading full-stack development of
+              production-grade applications with Laravel and React.
             </p>
           </motion.div>
 
@@ -117,6 +132,24 @@ export function About() {
             </p>
             <p className="text-sm text-muted-foreground">
               ITI — Nov 2024 to Feb 2025
+            </p>
+          </motion.div>
+
+          {/* AWS Certification Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
+            className="glass rounded-2xl p-6 card-shadow"
+          >
+            <Award className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
+            <p className="text-sm text-muted-foreground mb-1">Certification</p>
+            <p className="text-lg font-semibold text-foreground mb-2">
+              AWS Developer Associate
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Amazon Web Services
             </p>
           </motion.div>
 

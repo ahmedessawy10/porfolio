@@ -44,7 +44,7 @@ export function Footer() {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/ahmed-mostafa-essawy"
+              href="https://www.linkedin.com/in/ahmed-mostafa-essawy-1106b31a1"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full text-muted-foreground hover:text-primary transition-colors"
@@ -71,7 +71,7 @@ export function Footer() {
         >
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
             © {currentYear} Ahmed Mostafa. Built with{" "}
-            <Heart className="h-3 w-3 text-primary inline" /> using Next.js
+            <Heart className="h-3 w-3 text-primary inline" /> 
           </p>
         </motion.div>
       </div>

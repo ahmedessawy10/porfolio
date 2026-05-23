@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Download } from "lucide-react";
 
 const roles = [
   "Full-Stack PHP Developer",
@@ -109,9 +109,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed text-balance"
         >
-          I specialize in PHP Laravel, creating scalable ERP systems and seamless
-          e-commerce experiences. Driven by efficiency, with a proven track record
-          of reducing processing times by 40% through custom-built automation tools.
+          I build scalable web applications and robust backend systems, turning
+          complex problems into clean, efficient solutions. Passionate about
+          writing maintainable code and delivering products that make a real impact.
         </motion.p>
 
         <motion.div
@@ -135,6 +135,16 @@ export function Hero() {
             className="px-8 py-3.5 rounded-full border-2 border-border text-foreground font-semibold hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-300"
           >
             View Projects
+          </motion.a>
+          <motion.a
+            href="/Ahmed-Mostafa-CV.pdf"
+            download
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-8 py-3.5 rounded-full border-2 border-border text-foreground font-semibold hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-300 flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Download CV
           </motion.a>
         </motion.div>
 
@@ -167,7 +177,7 @@ export function Hero() {
             <Linkedin className="h-5 w-5" />
           </motion.a>
           <motion.a
-            href="mailto:elessawy238@gmail.com"
+            href="mailto:ahmedmostaffaessawy@gmail.com"
             whileHover={{ scale: 1.15, y: -3 }}
             whileTap={{ scale: 0.95 }}
             className="p-3 rounded-full border-2 border-border text-muted-foreground hover:text-primary hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-300"

@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
+  { href: "#certifications", label: "Certifications" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -43,7 +44,7 @@ export function Navigation() {
             href="#"
             className="text-xl font-semibold tracking-tight text-foreground"
           >
-            AM<span className="text-primary">.</span>
+            Ahmed Mostafa<span className="text-primary">.</span>
           </a>
 
           {/* Desktop Navigation */}
