@@ -70,8 +70,7 @@ export function Footer() {
           className="mt-8 pt-8 border-t border-border text-center"
         >
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-            © {currentYear} Ahmed Mostafa. Built with{" "}
-            <Heart className="h-3 w-3 text-primary inline" /> 
+            © {currentYear} Ahmed Mostafa.
           </p>
         </motion.div>
       </div>
