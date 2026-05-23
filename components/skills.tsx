@@ -11,23 +11,27 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     name: "Backend",
-    skills: ["PHP", "Laravel", "Node.js", "REST API", "GraphQL", "WebSockets"],
+    skills: ["PHP", "Laravel", "REST API", "Eloquent ORM", "Sanctum", "JWT"],
   },
   {
     name: "Frontend",
-    skills: ["HTML5", "CSS3", "JavaScript", "Angular", "Bootstrap", "Tailwind CSS"],
+    skills: ["React.js", "TypeScript", "JavaScript", "Angular", "HTML5", "Tailwind CSS"],
   },
   {
     name: "Database",
-    skills: ["MySQL", "MongoDB", "ORM", "Query Optimization"],
+    skills: ["MySQL", "PostgreSQL", "Redis", "Query Optimization", "Database Design"],
   },
   {
-    name: "DevOps & Tools",
-    skills: ["Git", "Docker", "AWS", "Linux", "CI/CD", "Apache"],
+    name: "DevOps & Cloud",
+    skills: ["AWS (EC2, S3, RDS)", "Docker", "GitHub Actions", "GitLab CI", "Linux", "Nginx"],
   },
   {
-    name: "Practices",
-    skills: ["OOP", "MVC", "Design Patterns", "Agile", "PHPUnit", "Security"],
+    name: "Architectures & Practices",
+    skills: ["Clean Architecture", "SOLID", "Design Patterns", "MVC", "OOP", "Agile"],
+  },
+  {
+    name: "Testing & Tools",
+    skills: ["PHPUnit", "Pest", "Postman", "Git", "GitHub", "GitLab"],
   },
 ];
 
@@ -36,28 +40,28 @@ const marqueeSkills = [
   "PHP",
   "MySQL",
   "REST API",
-  "JavaScript",
-  "Git",
+  "React.js",
+  "TypeScript",
   "Docker",
   "AWS",
-  "Angular",
-  "Node.js",
-  "Bootstrap",
-  "Tailwind",
-  "GraphQL",
-  "MongoDB",
+  "Redis",
+  "PostgreSQL",
+  "Tailwind CSS",
+  "GitHub Actions",
+  "PHPUnit",
+  "Nginx",
   "Linux",
-  "OOP",
+  "SOLID",
 ];
 
 function MarqueeRow({ direction = "left", speed = 30 }: { direction?: "left" | "right"; speed?: number }) {
-  const skills = [...marqueeSkills, ...marqueeSkills];
-  
+  const skills = [...marqueeSkills, ...marqueeSkills, ...marqueeSkills];
+
   return (
     <div className="flex overflow-hidden py-3">
       <motion.div
-        animate={{ x: direction === "left" ? "-50%" : "0%" }}
-        initial={{ x: direction === "left" ? "0%" : "-50%" }}
+        animate={{ x: direction === "left" ? "-33.333%" : "0%" }}
+        initial={{ x: direction === "left" ? "0%" : "-33.333%" }}
         transition={{
           duration: speed,
           repeat: Infinity,

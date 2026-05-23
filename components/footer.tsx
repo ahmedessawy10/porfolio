@@ -23,7 +23,7 @@ export function Footer() {
               Ahmed Mostafa<span className="text-primary">.</span>
             </a>
             <p className="text-sm text-muted-foreground mt-2">
-              Full-Stack PHP Developer
+              Backend Developer
             </p>
           </motion.div>
 
@@ -44,7 +44,7 @@ export function Footer() {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/ahmed-mostafa-essawy-1106b31a1"
+              href="https://www.linkedin.com/in/ahmed-mostafa-essawy"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full text-muted-foreground hover:text-primary transition-colors"
@@ -53,7 +53,7 @@ export function Footer() {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="mailto:elessawy238@gmail.com"
+              href="mailto:ahmedmostaffaessawy@gmail.com"
               className="p-2 rounded-full text-muted-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >
@@ -70,7 +70,7 @@ export function Footer() {
           className="mt-8 pt-8 border-t border-border text-center"
         >
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-            {currentYear} Ahmed Mostafa. Built with{" "}
+            © {currentYear} Ahmed Mostafa. Built with{" "}
             <Heart className="h-3 w-3 text-primary inline" /> using Next.js
           </p>
         </motion.div>

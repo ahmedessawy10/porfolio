@@ -15,27 +15,42 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // TODO: Replace YOUR_FORM_ID with your Formspree form ID.
+  // Sign up at formspree.io, create a form, and paste the ID from
+  // https://formspree.io/f/YOUR_FORM_ID
+  const FORMSPREE_ID = "YOUR_FORM_ID";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFormState({ name: "", email: "", message: "" });
-    
-    // Reset submitted state after 3 seconds
-    setTimeout(() => setSubmitted(false), 3000);
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formState),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormState({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 3000);
+      } else {
+        alert("Something went wrong. Please try again or email me directly.");
+      }
+    } catch {
+      alert("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "elessawy238@gmail.com",
-      href: "mailto:elessawy238@gmail.com",
+      value: "ahmedmostaffaessawy@gmail.com",
+      href: "mailto:ahmedmostaffaessawy@gmail.com",
     },
     {
       icon: Phone,
@@ -128,7 +143,7 @@ export function Contact() {
                     <Github className="h-5 w-5" />
                   </motion.a>
                   <motion.a
-                    href="https://www.linkedin.com/in/ahmed-mostafa-essawy-1106b31a1"
+                    href="https://www.linkedin.com/in/ahmed-mostafa-essawy"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.15, y: -3 }}

@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, GraduationCap, Award, Calendar } from "lucide-react";
+import { MapPin, GraduationCap, Award, Globe } from "lucide-react";
 
 const stats = [
-  { label: "Years Experience", value: "1+" },
-  { label: "Projects Completed", value: "4+" },
-  { label: "Efficiency Boost", value: "40%" },
-  { label: "GPA Score", value: "3.34" },
+  { label: "Years Experience", value: "3+" },
+  { label: "Projects Completed", value: "10+" },
+  { label: "Companies Worked", value: "4" },
+  { label: "Production Apps", value: "6+" },
 ];
 
 export function About() {
@@ -48,17 +48,17 @@ export function About() {
               Professional Bio
             </h3>
             <p className="text-muted-foreground leading-relaxed text-balance">
-              Experienced Full-Stack Developer specializing in PHP Laravel, with
-              over 1 year of hands-on experience in designing, developing, and
-              deploying scalable web applications. Proven expertise in building
-              dynamic ERP systems, e-commerce platforms, and reservation systems
-              using Laravel, REST APIs, and modern front-end technologies.
+              Backend Developer specializing in PHP and Laravel, with proven
+              experience designing and developing scalable APIs and complex web
+              systems. Strong background in database optimization, performance
+              tuning, and secure application development.
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4 text-balance">
-              Skilled in a variety of technologies, including PHP (Laravel),
-              WordPress, HTML, CSS, JavaScript, Angular, AWS, Docker, and Git. I
-              have a proven track record of reducing manual processing time by
-              40% and improving efficiency for enterprise clients.
+              Experienced in implementing clean architecture patterns, handling
+              high-traffic systems, and integrating third-party services.
+              Currently working at Apps Square leading development of
+              production-grade mobile application backends, and part-time at
+              Aeon building a medical maintenance system with Laravel and React.
             </p>
           </motion.div>
 
@@ -98,7 +98,7 @@ export function About() {
               Bachelor of Computer Science
             </p>
             <p className="text-sm text-muted-foreground">
-              Menofia University, 2018-2022
+              Computer Science, 2022
             </p>
           </motion.div>
 
@@ -113,10 +113,10 @@ export function About() {
             <Award className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-1">Certification</p>
             <p className="text-lg font-semibold text-foreground mb-2">
-              Intensive Training Program
+              Web Development with PHP
             </p>
             <p className="text-sm text-muted-foreground">
-              Information Technology Institute (ITI)
+              ITI — Nov 2024 to Feb 2025
             </p>
           </motion.div>
 
@@ -128,14 +128,14 @@ export function About() {
             whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
             className="glass rounded-2xl p-6 card-shadow"
           >
-            <Calendar className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
+            <Globe className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-3">Languages</p>
             <div className="flex flex-wrap gap-2">
               <span className="px-3 py-1 rounded-full bg-muted text-sm text-foreground">
                 Arabic (Native)
               </span>
               <span className="px-3 py-1 rounded-full bg-muted text-sm text-foreground">
-                English (Excellent)
+                English (Proficient)
               </span>
             </div>
           </motion.div>
