@@ -137,8 +137,9 @@ export function Hero() {
             View Projects
           </motion.a>
           <motion.a
-            href="/Ahmed-Mostafa-CV.pdf"
-            download
+            href="https://drive.google.com/file/d/1zduRt5W7rYqygRFiiu0yPjM0sawQWESA/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="px-8 py-3.5 rounded-full border-2 border-border text-foreground font-semibold hover:border-primary hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-300 flex items-center gap-2"

@@ -424,7 +424,7 @@ export const projects: ProjectDetail[] = [
   {
     slug: "aeon",
     title: "Aeon — HIC System",
-    company: "Istrotech Tech",
+    company: "Aeon Systems",
     year: "2024 – 2025",
     role: "Full-Stack Developer",
     category: "full-stack",
@@ -442,7 +442,7 @@ export const projects: ProjectDetail[] = [
     techGroups: [
       {
         category: "Backend",
-        items: ["Laravel 12.x", "PHP 8.2", "REST API", "MySQL", "Module-Based Architecture"],
+        items: ["Laravel 12.x", "PHP 8.2", "REST API", "MySQL","React.js", "Module-Based Architecture"],
       },
       {
         category: "Authentication & Authorization",

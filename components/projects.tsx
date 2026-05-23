@@ -87,39 +87,37 @@ function ProjectCard({
       onClick={() => router.push(`/projects/${project.slug}`)}
       className="glass rounded-2xl overflow-hidden card-shadow hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_30px_rgba(0,212,255,0.15)] transition-shadow duration-300 cursor-pointer group"
     >
-      {/* Image area */}
-      <div className="relative w-full h-44 bg-muted/30 border-b border-border overflow-hidden">
-        {project.image ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground/30">
-            <ImageIcon className="h-8 w-8" />
-            <span className="text-xs">No image yet</span>
-          </div>
-        )}
-        {/* Overlay gradient on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-
       {/* Content */}
       <div className="p-6">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
-              {project.title}
-            </h3>
-            <p className="text-primary text-sm font-medium mt-0.5">{project.company}</p>
+        {/* Header: logo + title/meta */}
+        <div className="flex items-start gap-4 mb-3">
+          {/* Logo */}
+          <div className="shrink-0 w-14 h-14 rounded-xl bg-muted/40 border border-border flex items-center justify-center overflow-hidden">
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-contain p-1"
+              />
+            ) : (
+              <ImageIcon className="h-6 w-6 text-muted-foreground/30" />
+            )}
           </div>
-          <div className="flex flex-col items-end gap-1.5 shrink-0">
-            <span className="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+
+          {/* Title + meta */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <h3 className="text-lg font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
+                  {project.title}
+                </h3>
+                <p className="text-primary text-sm font-medium mt-0.5">{project.company}</p>
+              </div>
+              <span className="text-xs text-muted-foreground shrink-0 mt-0.5">{project.year}</span>
+            </div>
+            <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
               {project.role}
             </span>
-            <span className="text-xs text-muted-foreground">{project.year}</span>
           </div>
         </div>
 

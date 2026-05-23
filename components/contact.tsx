@@ -157,8 +157,9 @@ export function Contact() {
 
               {/* Download CV Button */}
               <motion.a
-                href="/AhmedMostafa-CV.pdf"
-                download
+                href="https://drive.google.com/file/d/1zduRt5W7rYqygRFiiu0yPjM0sawQWESA/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.5 }}
