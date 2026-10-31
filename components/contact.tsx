@@ -134,6 +134,7 @@ export function Contact() {
                 <div className="flex gap-3">
                   <motion.a
                     href="https://github.com/ahmedessawy10"
+                    aria-label="GitHub"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.15, y: -3 }}
@@ -144,6 +145,7 @@ export function Contact() {
                   </motion.a>
                   <motion.a
                     href="https://www.linkedin.com/in/ahmed-mostafa-essawy"
+                    aria-label="LinkedIn"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.15, y: -3 }}

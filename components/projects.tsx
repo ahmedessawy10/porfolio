@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -94,9 +95,13 @@ function ProjectCard({
           {/* Logo */}
           <div className="shrink-0 w-14 h-14 rounded-xl bg-muted/40 border border-border flex items-center justify-center overflow-hidden">
             {project.image ? (
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
+                width={112}
+                height={112}
+                sizes="56px"
+                unoptimized={project.image.endsWith(".svg")}
                 className="w-full h-full object-contain p-1"
               />
             ) : (

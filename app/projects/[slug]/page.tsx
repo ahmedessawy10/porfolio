@@ -11,8 +11,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = getProjectBySlug(slug);
   if (!project) return {};
   return {
-    title: `${project.title} | Ahmed Mostafa`,
+    title: project.title,
     description: project.summary,
+    alternates: { canonical: `/projects/${slug}` },
+    openGraph: { title: `${project.title} | Ahmed Mostafa`, description: project.summary },
   };
 }
 

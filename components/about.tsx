@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -45,9 +46,12 @@ export function About() {
             whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.3 } }}
             className="glass rounded-2xl overflow-hidden card-shadow row-span-2 min-h-[260px]"
           >
-            <img
+            <Image
               src="/profile.png"
               alt="Ahmed Mostafa"
+              width={640}
+              height={800}
+              sizes="(max-width: 768px) 100vw, 400px"
               className="w-full h-full object-cover object-top"
             />
           </motion.div>

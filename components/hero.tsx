@@ -51,7 +51,7 @@ export function Hero() {
             opacity: [0.15, 0.25, 0.15],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[#00d4ff] rounded-full blur-[120px]" 
+          className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[#00d4ff] rounded-full blur-[120px] will-change-transform" 
         />
         <motion.div 
           animate={{ 
@@ -59,7 +59,7 @@ export function Hero() {
             opacity: [0.1, 0.2, 0.1],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-[#00ff88] rounded-full blur-[100px]" 
+          className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-[#00ff88] rounded-full blur-[100px] will-change-transform" 
         />
         <motion.div 
           animate={{ 
@@ -67,7 +67,7 @@ export function Hero() {
             opacity: [0.05, 0.1, 0.05],
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0ea5e9] rounded-full blur-[150px]" 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0ea5e9] rounded-full blur-[150px] will-change-transform" 
         />
       </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { GalleryImage } from "@/lib/projects-data";
@@ -78,9 +79,14 @@ function Lightbox({
         className="flex flex-col items-center gap-4 px-16"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
+        <Image
           src={images[current].src}
           alt={images[current].caption}
+          width={780}
+          height={1688}
+          sizes="(max-width: 768px) 90vw, 600px"
+          unoptimized={images[current].src.endsWith(".svg")}
+          priority
           className={`rounded-2xl object-contain shadow-2xl ${
             images[current].src.endsWith(".svg")
               ? "max-h-[60vh] max-w-[60vh] w-auto"
@@ -215,9 +221,14 @@ export function ProjectGallery({ images }: { images: GalleryImage[] }) {
                   className="relative w-full overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-md group-hover/card:shadow-[0_8px_30px_rgba(0,212,255,0.25)] group-hover/card:border-primary/40 transition-all duration-300 flex items-center justify-center"
                   style={{ height: Math.round(CARD_W * (852 / 393)) }}
                 >
-                  <img
+                  <Image
                     src={img.src}
                     alt={img.caption}
+                    width={360}
+                    height={780}
+                    sizes="180px"
+                    loading="lazy"
+                    unoptimized={img.src.endsWith(".svg")}
                     className={`w-full h-full transition-transform duration-500 group-hover/card:scale-105 ${
                       img.src.endsWith(".svg")
                         ? "object-contain p-3"
