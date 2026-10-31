@@ -10,28 +10,28 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    name: "Core Technologies",
-    skills: ["PHP", "Laravel", "Laravel 12.x", "REST API", "Eloquent ORM", "Sanctum", "JWT"],
-  },
-  {
-    name: "Architecture & Patterns",
-    skills: ["Clean Architecture", "Facade-Service Pattern", "SOLID", "Design Patterns", "MVC", "OOP", "Agile"],
-  },
-  {
-    name: "Database",
-    skills: ["MySQL", "PostgreSQL", "Redis", "Query Optimization", "Database Design", "Spatie Query Builder"],
-  },
-  {
-    name: "Integrations & Tools",
-    skills: ["HyperPay", "Unifonic", "ERP Integration", "Spatie Media Library", "Fractal Transformers", "Postman"],
+    name: "Backend",
+    skills: ["PHP 8", "Laravel", "RESTful APIs", "Eloquent ORM", "MVC", "Sanctum", "JWT", "Filament", "Blade"],
   },
   {
     name: "Frontend",
-    skills: ["React.js", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML5"],
+    skills: ["React.js", "Vue.js", "TypeScript", "JavaScript (ES6+)", "Angular", "Tailwind CSS", "HTML5", "CSS3"],
   },
   {
-    name: "DevOps & Testing",
-    skills: ["Docker", "AWS (EC2, S3)", "GitHub Actions", "Linux", "Nginx", "PHPUnit", "Pest", "Git"],
+    name: "Databases & Caching",
+    skills: ["MySQL", "PostgreSQL", "Redis", "Database Design", "Query Optimization"],
+  },
+  {
+    name: "Cloud & DevOps",
+    skills: ["AWS (EC2, S3, RDS, Elastic Beanstalk)", "Docker", "CI/CD", "GitHub Actions", "GitLab CI", "Jenkins", "Linux", "Nginx"],
+  },
+  {
+    name: "Payments & Integrations",
+    skills: ["HyperPay", "Kashier", "Unifonic SMS", "ERP Integration", "QR Code Payments", "Third-Party APIs"],
+  },
+  {
+    name: "Testing, Tools & Practices",
+    skills: ["PHPUnit", "Git", "Postman", "Flutter (mobile APIs)", "SOLID", "Design Patterns", "Clean Architecture", "Agile"],
   },
 ];
 

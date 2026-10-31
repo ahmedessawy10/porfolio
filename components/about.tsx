@@ -8,9 +8,9 @@ import { MapPin, GraduationCap, Award, Globe } from "lucide-react";
 
 const stats = [
   { label: "Years Experience", value: "3+" },
-  { label: "Projects Completed", value: "10+" },
+  { label: "Projects Delivered", value: "10+" },
   { label: "Companies Worked", value: "4" },
-  { label: "Production Apps", value: "6+" },
+  { label: "Apps Shipped at Apps Square", value: "4" },
 ];
 
 export function About() {
@@ -68,16 +68,16 @@ export function About() {
               Professional Bio
             </h3>
             <p className="text-muted-foreground leading-relaxed text-balance">
-              Full-Stack Developer specializing in PHP, Laravel, and React, with proven
-              experience designing and developing scalable REST APIs and complex web
-              systems. Strong background in database optimization, performance
-              tuning, and secure application development.
+              Full-Stack Developer with 3+ years of experience building production web
+              applications with PHP, Laravel, React.js, and MySQL. Led code reviews and
+              set API and Git conventions for a team of 3 developers.
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4 text-balance">
-              Experienced in implementing clean architecture patterns, handling
-              high-traffic systems, and integrating third-party services.
-              Currently working at Apps Square leading full-stack development of
-              production-grade applications with Laravel and React.
+              Delivered 4 live products at Apps Square across food ordering, digital
+              tipping, school management, and payments, including RESTful APIs for mobile
+              apps, real-time order tracking, ERP integration, and HyperPay payment
+              integration. Works across the full stack, from database design and API
+              development to admin dashboards, Docker, AWS deployment, and CI/CD.
             </p>
           </motion.div>
 
@@ -114,10 +114,10 @@ export function About() {
             <GraduationCap className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-1">Education</p>
             <p className="text-lg font-semibold text-foreground mb-2">
-              Bachelor of Computer Science
+              Bachelor of Science in Computer Science
             </p>
             <p className="text-sm text-muted-foreground">
-              Computer Science, 2022
+              Menofia University, 2022
             </p>
           </motion.div>
 
@@ -150,10 +150,10 @@ export function About() {
             <Award className="h-8 w-8 text-primary mb-4 drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
             <p className="text-sm text-muted-foreground mb-1">Certification</p>
             <p className="text-lg font-semibold text-foreground mb-2">
-              AWS Developer Associate
+              DevOps Engineering
             </p>
             <p className="text-sm text-muted-foreground">
-              Amazon Web Services
+              DEBI - 9 months
             </p>
           </motion.div>
 
@@ -172,7 +172,7 @@ export function About() {
                 Arabic (Native)
               </span>
               <span className="px-3 py-1 rounded-full bg-muted text-sm text-foreground">
-                English (Proficient)
+                English (Professional)
               </span>
             </div>
           </motion.div>

@@ -16,20 +16,34 @@ interface Certification {
 
 const certifications: Certification[] = [
   {
-    title: "Web Development with PHP",
-    issuer: "Information Technology Institute (ITI)",
-    date: "Nov 2024 – Feb 2025",
+    title: "DevOps Engineering",
+    issuer: "Digital Egypt Builders Initiative (DEBI)",
+    date: "9 months",
     description:
-      "Intensive professional training covering PHP fundamentals, Laravel framework, REST API design, database engineering, and modern backend development practices.",
-    tags: ["PHP", "Laravel", "REST API", "MySQL", "Backend"],
+      "Intensive DevOps program covering AWS, Docker, Jenkins, and CI/CD pipelines.",
+    tags: ["AWS", "Docker", "Jenkins", "CI/CD"],
   },
   {
-    title: "AWS Developer Associate",
-    issuer: "Amazon Web Services",
-    date: "2024",
+    title: "Web Development with PHP",
+    issuer: "Information Technology Institute (ITI)",
+    date: "Nov 2024 - Feb 2025",
     description:
-      "Validates expertise in developing and deploying cloud-based applications on AWS, including EC2, S3, Lambda, RDS, and CI/CD pipelines.",
-    tags: ["AWS", "EC2", "S3", "Lambda", "Cloud", "DevOps"],
+      "Professional training covering PHP, the Laravel framework, REST API design, and backend development practices.",
+    tags: ["PHP", "Laravel", "REST API", "MySQL"],
+  },
+  {
+    title: "Web Design",
+    issuer: "National Telecommunication Institute (NTI)",
+    date: "3 months",
+    description: "Web design training covering HTML, CSS, and responsive layouts.",
+    tags: ["HTML", "CSS", "Responsive Design"],
+  },
+  {
+    title: "Project Management",
+    issuer: "The American University in Cairo (AUC)",
+    date: "Jul 2021",
+    description: "Project management course covering planning, delivery, and team coordination.",
+    tags: ["Project Management", "Agile"],
   },
 ];
 

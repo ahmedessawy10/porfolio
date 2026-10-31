@@ -144,7 +144,7 @@ export function Contact() {
                     <Github className="h-5 w-5" />
                   </motion.a>
                   <motion.a
-                    href="https://www.linkedin.com/in/ahmed-mostafa-essawy"
+                    href="https://www.linkedin.com/in/ahmed-mostafa-essawy/"
                     aria-label="LinkedIn"
                     target="_blank"
                     rel="noopener noreferrer"

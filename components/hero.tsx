@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ChevronDown, Download } from "lucide-react";
 
 const roles = [
-  "Full-Stack PHP Developer",
-  "Laravel Specialist",
-  "Backend Engineer",
-  "API Architect",
+  "Full-Stack Developer",
+  "Laravel Developer",
+  "PHP & React.js Engineer",
+  "REST API Developer",
 ];
 
 export function Hero() {
@@ -112,9 +112,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed text-balance"
         >
-          I build scalable web applications and robust backend systems, turning
-          complex problems into clean, efficient solutions. Passionate about
-          writing maintainable code and delivering products that make a real impact.
+          Full-Stack Developer with 3+ years of experience building production
+          applications with PHP, Laravel, React.js, and MySQL: REST APIs for mobile
+          apps, real-time order tracking, ERP and payment integrations, Docker, and AWS.
         </motion.p>
 
         <motion.div
@@ -170,7 +170,7 @@ export function Hero() {
             <Github className="h-5 w-5" />
           </motion.a>
           <motion.a
-            href="https://www.linkedin.com/in/ahmed-mostafa-essawy-1106b31a1"
+            href="https://www.linkedin.com/in/ahmed-mostafa-essawy/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -3 }}
