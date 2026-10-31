@@ -150,8 +150,12 @@ export function ProjectGallery({ images }: { images: GalleryImage[] }) {
   useEffect(() => {
     if (!trackRef.current || images.length === 0) return;
 
+    let visible = true;
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; });
+    io.observe(trackRef.current);
+
     const tick = () => {
-      if (!pausedRef.current && trackRef.current) {
+      if (visible && !pausedRef.current && trackRef.current) {
         posRef.current += SPEED;
         // when we've scrolled one full set, snap back silently
         if (posRef.current >= setWidth) {
@@ -163,7 +167,7 @@ export function ProjectGallery({ images }: { images: GalleryImage[] }) {
     };
 
     rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    return () => { cancelAnimationFrame(rafRef.current); io.disconnect(); };
   }, [setWidth, images.length]);
 
   /* ── manual arrow jump ── */

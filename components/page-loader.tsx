@@ -25,7 +25,8 @@ export function PageLoader() {
             <motion.div
               animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.2, 0.1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00d4ff] rounded-full blur-[150px]"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
+              style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)" }}
             />
           </div>
 
